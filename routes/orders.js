@@ -3,8 +3,10 @@ const router = express.Router();
 const orderController = require('../controllers/orderController');
 const authMiddleware = require('../middleware/auth');
 
-// Legacy routes map to new controller methods (backward compatible)
-router.post('/create-order', authMiddleware, orderController.createOrder);
+// Protected Routes
+router.post('/create', authMiddleware, orderController.createOrder);
 router.post('/verify-payment', authMiddleware, orderController.verifyPayment);
+router.get('/my-orders', authMiddleware, orderController.getMyOrders);
+router.get('/track/:orderId', authMiddleware, orderController.trackOrder);
 
 module.exports = router;

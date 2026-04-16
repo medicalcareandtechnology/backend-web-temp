@@ -26,13 +26,18 @@ if (MONGO_URI) {
 const healthRoutes = require('./routes/health');
 const contactRoutes = require('./routes/contact');
 const authRoutes = require('./routes/auth');
-const paymentRoutes = require('./routes/payment');
+const orderRoutes = require('./routes/orders');
+const shippingRoutes = require('./routes/shipping');
+const webhookRoutes = require('./routes/webhooks');
 
 // API Routes
 app.use('/api/health', healthRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/auth', authRoutes);
-app.use('/api/payment', paymentRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/shipping', shippingRoutes);
+app.use('/api/webhooks', webhookRoutes);
+app.use('/api/payment', require('./routes/payment')); // Legacy frontend alias
 
 // General 404 handler for API
 app.use((req, res) => {
